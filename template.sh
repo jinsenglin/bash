@@ -32,6 +32,13 @@ function mk_tmp_dir {
 }
 mk_tmp_dir
 
+function set_xy {
+  printf -v $1 "Hello"
+  printf -v $2 "world"
+}
+set_xy x y
+echo $x $y
+
 function infinite_loop {
   while true; do
     $1
