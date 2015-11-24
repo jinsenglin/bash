@@ -21,6 +21,7 @@ function echo_this_dir_abs_path {
 
   echo $SCRIPTPATH
 }
+echo_this_dir_abs_path
 
 function mk_tmp_file {
   mktemp tmp.XXXX
@@ -39,6 +40,21 @@ function set_xy {
 set_xy x y
 echo $x $y
 
+function run_state_machine {
+  [ -f step1 ] || (echo doing step1 && touch step1)
+  [ -f step2 ] || (echo doing step2 && touch step2)
+  [ -f step-final ] || (echo doing step-final && touch step-final)
+}
+run_state_machine
+
+function echo_args {
+  local arg
+  for arg in "$@"; do
+    echo $arg
+  done
+}
+echo_args "x" "y z"
+
 function infinite_loop {
   while true; do
     $1
@@ -47,7 +63,7 @@ function infinite_loop {
 
 function dummy {
   date
-  sleep 1
+  sleep 5
 }
 
 infinite_loop dummy
