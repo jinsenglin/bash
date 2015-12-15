@@ -15,13 +15,23 @@ trap clean_up SIGINT SIGTERM
         # SIGTERM: 15, terminate process
 
 function echo_this_dir_abs_path {
-  pushd `dirname $0` > /dev/null
+  # case: source this script, then use $BASH_ARGV
+  # case: bash this script, then use $0
+  [ -z $BASH_ARGV ] && pushd `dirname $0` > /dev/null || pushd `dirname $BASH_ARGV` > /dev/null
+  
   local SCRIPTPATH=`pwd -P` # Display the physical current working directory
   popd > /dev/null
 
   echo $SCRIPTPATH
 }
 echo_this_dir_abs_path
+
+function echo_this_script_name {
+  # case: source this script, then use $BASH_ARGV
+  # case: bash this script, then use $0
+  [ -z $BASH_ARGV ] && basename $0 || basename $BASH_ARGV
+}
+echo_this_script_name
 
 function mk_tmp_file {
   mktemp tmp.XXXX
