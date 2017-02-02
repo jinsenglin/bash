@@ -10,10 +10,16 @@ function mac() {
 
 function linux_centos() {
     echo Linux CentOS
+
+    VERSION_ID=$(cat /etc/os-release | grep "^VERSION_ID=" | sed 's/VERSION_ID=//' | sed 's/"//g')
+    echo Linux CentOS $VERSION_ID
 }
 
 function linux_ubuntu() {
     echo Linux Ubuntu
+
+    VERSION_ID=$(cat /etc/os-release | grep "^VERSION_ID=" | sed 's/VERSION_ID=//' | sed 's/"//g')
+    echo Linux Ubuntu $VERSION_ID
 }
 
 function linux() {
