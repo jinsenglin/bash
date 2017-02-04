@@ -1,16 +1,22 @@
 #!/bin/bash
 
+# r version
 # r config
 # r help
 function dump_options() {
     local _format="%-10s = %s\n"
 
+    printf "$_format" version $version
     printf "$_format" config $config
     printf "$_format" help $help
 }
 
 function next_step() {
     dump_options
+}
+
+function show_version() {
+    echo 1.0.0
 }
 
 function show_help() {
@@ -26,6 +32,7 @@ function show_help() {
     echo
     printf "$_format1" "-c" "--config=./" "Location of client config files"
     printf "$_format1" "-h" "--help" "Print usage"
+    printf "$_format1" "-v" "--version" "Print version"
     echo
     echo Environment Variables:
     echo
@@ -36,14 +43,18 @@ function show_help() {
     printf "$_format3" "$0"
     printf "$_format3" "$0 -h"
     printf "$_format3" "$0 --help"
+    printf "$_format3" "$0 -v"
+    printf "$_format3" "$0 --version"
     printf "$_format3" "$0 -c /tmp"
     printf "$_format3" "$0 --config /tmp"
 }
 
+# w version
 # w config
 # w help
 function parse_options() {
     # set  default
+    version=
     help=
 
     set -e
@@ -58,6 +69,9 @@ function parse_options() {
                 ;;
             -h|--help)
                 help=1
+                ;;
+            -v|--version)
+                version=1
                 ;;
             *)
                 # unknown option
@@ -83,6 +97,8 @@ function main() {
     parse_options $@
     if [ $help ]; then
         show_help
+    elif [ $version ]; then
+        show_version
     else
         next_step
     fi
