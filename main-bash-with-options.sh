@@ -47,6 +47,9 @@ function show_help() {
     printf "$_format3" "$0 --version"
     printf "$_format3" "$0 -c /tmp"
     printf "$_format3" "$0 --config /tmp"
+    printf "$_format3" "x_config=/tmp $0"
+    printf "$_format3" "x_config=/low $0 -c /high"
+    printf "$_format3" "x_config=/low $0 --config /high"
 }
 
 # w version
