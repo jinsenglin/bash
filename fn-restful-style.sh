@@ -14,7 +14,7 @@ echo INFO: payload content:
 
 jq -r '.' < $payload
 
-version=$( jq -r '.version' < $payload )
+version=$( jq -r '.version // "unknown"' < $payload )
 echo INFO: version $version
 
 # out
