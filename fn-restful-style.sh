@@ -18,4 +18,6 @@ version=$( jq -r '.version // "unknown"' < $payload )
 echo INFO: version $version
 
 # out
-echo '{"status": 200}' >&3
+jq -n "{
+  status: 200
+}" >&3
