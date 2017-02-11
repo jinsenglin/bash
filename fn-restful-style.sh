@@ -1,5 +1,5 @@
 #!/bin/bash
-# try run `echo '{version: 1.0}' | $0 2> api.log | cat`
+# try run `echo '{"version": "1.0"}' | $0 2> api.log | cat`
 
 exec 3>&1
 exec 1>&2
@@ -10,7 +10,12 @@ payload=$(mktemp /tmp/payload.XXXXXX)
 cat > $payload <&0
 
 echo INFO: payload file $payload
-echo WARN: bra bra bra
+echo INFO: payload content:
+
+jq -r '.' < $payload
+
+version=$( jq -r '.version' < $payload )
+echo INFO: version $version
 
 # out
-echo '{status: 200}' >&3
+echo '{"status": 200}' >&3
