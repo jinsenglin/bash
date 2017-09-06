@@ -1,0 +1,23 @@
+resource_types:
+- name: dummy-res
+  type: docker-image
+  source:
+    repository: jimlintw/dummy-res
+
+resources:
+- name: dummy-res1
+  type: dummy-res
+  source:
+    debug: true
+
+jobs:
+- name: dummy-job
+  plan:
+  - get: dummy-res1
+    params:
+      p1: 1
+      p2: 2
+  - put: dummy-res1
+    params:
+      p3: 3
+      p4: 4
