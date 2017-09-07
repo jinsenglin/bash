@@ -18,6 +18,9 @@ version=$( jq -r '.version // "unknown"' < $payload )
 echo INFO: version $version
 
 # out
-jq -n "{
-  status: 200
-}" >&3
+jq -n '{
+  version: {ver: "0"},
+  metadata: [
+    { name: "name1", value: "value1" }
+  ]
+}' >&3
