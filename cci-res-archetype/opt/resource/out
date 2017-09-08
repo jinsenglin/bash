@@ -9,25 +9,25 @@ payload=$(mktemp /tmp/payload.XXXXXX)
 # in
 cat > $payload <&0
 
-echo INFO: script file out
-echo INFO: number of arguments $#
-echo INFO: arguments $@
-echo INFO: whoami $(whoami)
-echo INFO: whereami $(pwd)
-echo INFO: request payload file $payload
-echo INFO: request payload content:
+echo DEBUG: script file out
+echo DEBUG: number of arguments $#
+echo DEBUG: arguments $@
+echo DEBUG: whoami $(whoami)
+echo DEBUG: whereami $(pwd)
+echo DEBUG: request payload file $payload
+echo DEBUG: request payload content:
 
 jq -r '.' < $payload
 
 version=$( jq -r '.version // "unknown"' < $payload )
-echo INFO: version $version
+echo DEBUG: version $version
 
 # impl
 # TODO use the folder $1 to update something
 ls $1
 
 # out
-echo INFO: response payload content:
+echo DEBUG: response payload content:
 
 jq -n '{
   version: {ver: "0"},
