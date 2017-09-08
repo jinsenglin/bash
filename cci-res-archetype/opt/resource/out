@@ -28,7 +28,7 @@ ls $1
 echo DEBUG: response payload content:
 
 jq -n '{
-  version: {ver: "0"},
+  version: {ver: "2"},
   metadata: [
     { name: "script", value: "out" },
     { name: "out", value: "out" }
@@ -36,7 +36,7 @@ jq -n '{
 }'
 
 jq -n '{
-  version: {ver: "0"},
+  version: {ver: "2"},
   metadata: [
     { name: "script", value: "out" },
     { name: "out", value: "out" }
