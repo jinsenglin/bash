@@ -12,6 +12,8 @@ cat > $payload <&0
 echo INFO: script file check
 echo INFO: number of arguments $#
 echo INFO: arguments $@
+echo INFO: whoami $(whoami)
+echo INFO: whereami $(pwd)
 echo INFO: request payload file $payload
 echo INFO: request payload content:
 

@@ -12,6 +12,8 @@ cat > $payload <&0
 echo INFO: script file out
 echo INFO: number of arguments $#
 echo INFO: arguments $@
+echo INFO: whoami $(whoami)
+echo INFO: whereami $(pwd)
 echo INFO: request payload file $payload
 echo INFO: request payload content:
 
@@ -21,7 +23,8 @@ version=$( jq -r '.version // "unknown"' < $payload )
 echo INFO: version $version
 
 # impl
-# TODO use the folder $0 to update something
+# TODO use the folder $1 to update something
+ls $1
 
 # out
 echo INFO: response payload content:

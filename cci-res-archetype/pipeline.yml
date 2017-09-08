@@ -17,6 +17,18 @@ jobs:
     params:
       p1: 1
       p2: 2
+  - task: dummy-task
+    config:
+      platform: linux
+      image_resource:
+        type: docker-image
+        source:
+          repository: busybox
+      inputs:
+      - name: dummy-res1
+      run:
+        path: ls
+        args: ["dummy-res1"]
   - put: dummy-res1
     params:
       p3: 3
