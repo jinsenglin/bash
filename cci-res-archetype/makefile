@@ -1,5 +1,7 @@
 all: build push test
 
+test-wo-cache: down up build push test
+
 init:
 	mkdir vagrant
 	cd vagrant && vagrant init --box-version "2.7.0" concourse/lite

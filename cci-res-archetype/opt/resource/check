@@ -14,6 +14,7 @@ echo DEBUG: number of arguments $#
 echo DEBUG: arguments $@
 echo DEBUG: whoami $(whoami)
 echo DEBUG: whereami $(pwd)
+echo DEBUG: env $(env)
 echo DEBUG: request payload file $payload
 echo DEBUG: request payload content:
 
@@ -22,16 +23,20 @@ jq -r '.' < $payload
 version=$( jq -r '.version // "unknown"' < $payload )
 echo DEBUG: version $version
 
-# impl
-# TODO generate new version
+# impl: generate new version
+if [ $version == "unknown" ]; then
+    ver=0
+else
+    ver=$(( $ver + 1 ))
+fi
 
 # out
 echo DEBUG: response content:
 
 jq -n '[
-  {ver: "0"}
+  {ver: "'$ver'"}
 ]' 
 
 jq -n '[
-  {ver: "0"}
+  {ver: "'$ver'"}
 ]' >&3

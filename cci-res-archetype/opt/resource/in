@@ -14,6 +14,7 @@ echo DEBUG: number of arguments $#
 echo DEBUG: arguments $@
 echo DEBUG: whoami $(whoami)
 echo DEBUG: whereami $(pwd)
+echo DEBUG: env $(env)
 echo DEBUG: request payload file $payload
 echo DEBUG: request payload content:
 
@@ -24,22 +25,26 @@ echo DEBUG: version $version
 
 # impl
 # TODO use something to update the folder $1
-touch $1/$(echo $version | jq -r '.ver')
+ver=$(echo $version | jq -r '.ver')
+echo DEBUG: ver $ver
+touch $1/$ver
 ls $1
 
 # out
 echo DEBUG: response content:
 
 jq -n '{
-  version: {ver: "0"},
+  version: {ver: "'$ver'"},
   metadata: [
-    { name: "name1", value: "value1" }
+    { name: "script", value: "in" },
+    { name: "in", value: "in" }
   ]
 }'
 
 jq -n '{
-  version: {ver: "0"},
+  version: {ver: "'$ver'"},
   metadata: [
-    { name: "name1", value: "value1" }
+    { name: "script", value: "in" },
+    { name: "in", value: "in" }
   ]
 }' >&3
