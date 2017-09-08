@@ -27,6 +27,7 @@ echo DEBUG: version $version
 if [ $version == "unknown" ]; then
     ver=0
 else
+    ver=$(echo $version | jq -r '.ver')
     ver=$(( $ver + 1 ))
 fi
 
