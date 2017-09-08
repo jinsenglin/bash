@@ -1,5 +1,15 @@
 all: build push test
 
+init:
+	mkdir vagrant
+	cd vagrant && vagrant init --box-version "2.7.0" concourse/lite
+
+up:
+	cd vagrant && vagrant up
+
+down:
+	cd vagrant && vagrant halt
+
 build:
 	docker build -t jimlintw/dummy-res:latest .
 

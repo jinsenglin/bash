@@ -9,6 +9,9 @@ payload=$(mktemp /tmp/payload.XXXXXX)
 # in
 cat > $payload <&0
 
+echo INFO: script file in
+echo INFO: number of arguments $#
+echo INFO: arguments $@
 echo INFO: payload file $payload
 echo INFO: payload content:
 
