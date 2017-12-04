@@ -9,10 +9,11 @@ function clean_up {
   echo cleaned
   exit
 }
-trap clean_up SIGINT SIGTERM
+trap clean_up SIGINT SIGTERM ERR
 
         # SIGINT: 2, interrupt process, [ctrl] + [c]
         # SIGTERM: 15, terminate process
+        # ERR: bash -e flag
 
 function echo_this_dir_abs_path {
   # case: source this script, then use $BASH_ARGV
