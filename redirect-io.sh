@@ -20,9 +20,11 @@ echo 2
 ls 2
 
 # redirect output from file to console
-exec 3>&- # close fd3
-exec 1>&9 # redirect std out to fd9
 exec 2>&8 # redirect std err ot fd8
+exec 1>&9 # redirect std out to fd9
+exec 8>&- # close fd8
+exec 9>&- # close fd9
+exec 3>&- # close fd3
 
 # std out
 echo 3
